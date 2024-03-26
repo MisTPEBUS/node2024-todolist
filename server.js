@@ -10,7 +10,7 @@ const reqListener = (req, res) => {
     body += chunk;
   });
 
-     res.writeHead(404, headers);
+     res.writeHead(200, headers);
     res.write(JSON.stringify({ "status": false, "message": "Path error !" }));
 };
 
