@@ -9,7 +9,7 @@ const reqListener = (req, res) => {
   req.on('data', (chunk) => {
     body += chunk;
   });
-
+/*
   //getAll
   if (req.url == '/todos' && req.method == 'GET') {
     
@@ -107,7 +107,9 @@ const reqListener = (req, res) => {
    
     res.writeHead(404, headers);
     res.write(JSON.stringify({ "status": false, "message": "Path error !" }));
-  }
+  }*/
+     res.writeHead(404, headers);
+    res.write(JSON.stringify({ "status": false, "message": "Path error !" }));
 };
 
 const server = http.createServer(reqListener);
