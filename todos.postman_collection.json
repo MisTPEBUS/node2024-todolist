@@ -1,0 +1,170 @@
+{
+	"info": {
+		"_postman_id": "43676420-229d-4853-b772-b815198b30c1",
+		"name": "todos",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "14627098",
+		"_collection_link": "https://www.postman.com/navigation-physicist-58730858/workspace/test/collection/14627098-43676420-229d-4853-b772-b815198b30c1?action=share&source=collection_link&creator=14627098"
+	},
+	"item": [
+		{
+			"name": "127.0.0.1:2330/todos",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:2330/todos",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "2330",
+					"path": [
+						"todos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "127.0.0.1:2330/todos/{:id}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:2330/todos/",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "2330",
+					"path": [
+						"todos",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "127.0.0.1:2330/todos",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "  {\r\n            \"tittle\": \"JSX\"\r\n           \r\n        }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:2330/todos",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "2330",
+					"path": [
+						"todos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "127.0.0.1:2330/todos/{:id}",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n     \"tittle\": \"C\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:2330/todos/f3f1631f-59c0-4612-99b0-a84148ff8e8e",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "2330",
+					"path": [
+						"todos",
+						"f3f1631f-59c0-4612-99b0-a84148ff8e8e"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "127.0.0.1:2330/todos/{:id}",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:2330/todos/f3f1631f-59c0-4612-99b0-a84148ff8e8e",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "2330",
+					"path": [
+						"todos",
+						"f3f1631f-59c0-4612-99b0-a84148ff8e8e"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "127.0.0.1:2330/todos",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:2330/todos",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "2330",
+					"path": [
+						"todos"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
