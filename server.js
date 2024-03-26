@@ -11,7 +11,7 @@ const reqListener = (req, res) => {
   });
 
      res.writeHead(200, headers);
-    res.write(JSON.stringify({ "status": false, "message": "Path error !" }));
+    res.write(JSON.stringify({ "status": false, "message": "Path sserror !" }));
 };
 
 const server = http.createServer(reqListener);
