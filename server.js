@@ -1,10 +1,13 @@
 const http = require('http');
-const TodoModel  = require('./todoModel');
+const TodoModel = require('./todoRepo');
 const { headers } = require('./header');
+
+const { errorHandle,successHandle } = require('./resHandle');
+
 const todos = new TodoModel();
 
 const reqListener = (req, res) => {
-  let body ='';
+  let body = '';
   //get form
   req.on('data', (chunk) => {
     body += chunk;
@@ -12,103 +15,72 @@ const reqListener = (req, res) => {
 
   //getAll
   if (req.url == '/todos' && req.method == 'GET') {
-    
-    res.writeHead(200, headers);
-    res.write(JSON.stringify({ "status": 'success', "data": todos.getTodosALL() }));
-    res.end();
+    todos.getTodosALL(res);
   }
-   //getById
+  //getById
   else if (req.url.startsWith('/todos/') && req.method == 'GET') {
-    
+
     const id = req.url.split('/').pop();
     
-
-    res.writeHead(200, headers);
-    res.end(JSON.stringify({ "status": 'success', "data": todos.getTodoById(id) }));
+    todos.getTodoById(res,id);
   }
   //insert
   else if (req.url == '/todos' && req.method == "POST") {
     req.on('end', () => {
-      try {      
+      try {
         const todo = JSON.parse(body);
-        if(todo.tittle)
-        {
-          res.write(JSON.stringify({ "status": 'success', "message": `新增${(todos.createTodo(todo)).tittle}成功 `}));
+        if (todo.tittle) {
+            todos.createTodo(res,todo);
         }
-        else{
-          res.statusCode = 400;
-          res.write(JSON.stringify({ "status": 'error', "message": `新增todo欄位異常 `}));
+        else {
+         errorHandle(res,400,"tittle不能為空值");
         }
-        res.end();
       } catch (err) {
-        // uh oh! bad json!
-        res.statusCode = 400;
-        return res.end(`error: ${err.message}`);
+        errorHandle(res,400, err.message);
       }
     });
   }
-   //update
-   else if (req.url.startsWith('/todos/') && req.method == "PATCH") {
+  //update
+  else if (req.url.startsWith('/todos/') && req.method == "PATCH") {
     req.on('end', () => {
-      try {      
+      try {
         const todo = JSON.parse(body);
         const id = req.url.split('/').pop();
-        res.writeHead(200, headers);
-        res.write(JSON.stringify({ "status": 'success', "message": `更新todo:${todos.updateTodo(id,todo)}成功 `}));
-        
-       /*  if(todo.tittle )
-        {
-          res.write(JSON.stringify({ "status": 'success', "message": `更新todo:${todos.updateTodo(id,todo)}成功 `}));
-        }
-        else{
-          res.statusCode = 400;
-          res.write(JSON.stringify({ "status": 'error', "message": `更新todo欄位異常 `}));
-        } */
-        res.end();
-      } catch (err) {
-        // uh oh! bad json!
-        res.statusCode = 400;
-        return res.end(`error: ${err.message}`);
+       
+        if (todo.tittle) {
+          todos.updateTodo(res,id, todo);
       }
-
-     
+      else {
+        errorHandle(res,400,"tittle不能為空值");
+      }
+      
+      } catch (err) {
+        errorHandle(res,400, err.message);
+      }
     });
   }
 
   else if (req.url == '/todos' && req.method == "OPTIONS") {
-    res.writeHead(200, headers);
-    res.end(JSON.stringify({ "status": 'OPTIONS' }));
+    successHandle(res,200,"");
   }
   //delete by id
   else if (req.url.startsWith('/todos/') && req.method == 'DELETE') {
     try {
       const id = req.url.split('/').pop();
-
-    res.writeHead(200, headers);
-    res.end(JSON.stringify({ "status": 'success', "data": todos.deleteTodoById(id) }));
+      todos.deleteTodoById(res,id);
     }
     catch (err) {
-      req.writeHead(404,headers);
-      req.write();
-      req.end();
+      errorHandle(res,400, err.message);
     }
   }
   //delete all
   else if (req.url == '/todos' && req.method == 'DELETE') {
-    res.writeHead(200, headers);
-    res.write(JSON.stringify({
-      "status": "success",
-      "data": todos.deleteAll(),
-      "message": '資料全數刪除成功!',
-    }))
-    res.end();
+    todos.deleteAll(res);
   }
   else {
-   
-    res.writeHead(404, headers);
-    res.write(JSON.stringify({ "status": false, "message": "Path error !" }));
+    errorHandle(res, 404, '查無此路徑!');
   }
 };
 
 const server = http.createServer(reqListener);
-server.listen(process.env.PORT || 4000);
+server.listen(process.env.PORT || 2330);
