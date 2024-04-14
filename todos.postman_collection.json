@@ -67,7 +67,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "  {\r\n            \"tittle\": \"JSX\"\r\n           \r\n        }",
+					"raw": "  {\r\n            \"title\": \"JSX\"\r\n           \r\n        }",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -96,7 +96,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n     \"tittle\": \"C\"\r\n}",
+					"raw": "{\r\n     \"title\": \"C\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
