@@ -17,7 +17,7 @@ function successHandle(res,code,message,data){
     res.write(JSON.stringify({
         "status":true,
         "message":message,  
-        "data":data
+        "data":JSON.stringify(data)
       }));
   }
   else{
