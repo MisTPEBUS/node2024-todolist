@@ -29,11 +29,11 @@ const reqListener = (req, res) => {
     req.on('end', () => {
       try {
         const todo = JSON.parse(body);
-        if (todo.tittle) {
+        if (todo.title) {
             todos.createTodo(res,todo);
         }
         else {
-         errorHandle(res,400,"tittle不能為空值");
+         errorHandle(res,400,"title不能為空值");
         }
       } catch (err) {
         errorHandle(res,400, err.message);
@@ -47,11 +47,11 @@ const reqListener = (req, res) => {
         const todo = JSON.parse(body);
         const id = req.url.split('/').pop();
        
-        if (todo.tittle) {
+        if (todo.title) {
           todos.updateTodo(res,id, todo);
       }
       else {
-        errorHandle(res,400,"tittle不能為空值");
+        errorHandle(res,400,"title不能為空值");
       }
       
       } catch (err) {
